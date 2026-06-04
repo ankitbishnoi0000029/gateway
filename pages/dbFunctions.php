@@ -74,15 +74,12 @@ function getXbyY($query) {
     $row = $result->fetch_assoc(); 
     $set[] = $row);
 
-    $con->close();
     return $set;
 }
 
 function setXbyY($query) {
     $con = connect_database();
-    print_r($con);
     $result = $con->query($query) or die($query . " " . mysqli_error($con));
-    $con->close();
     return $result;
 }
 

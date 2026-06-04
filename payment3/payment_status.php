@@ -181,12 +181,12 @@ $resultSelectReports = $stmtSelectReports->get_result();
 $rowReports = $resultSelectReports->fetch_assoc();
 $stmtSelectReports->close();
 
-$db_status = $rowReports['status'];
-$db_transactionNote = $rowReports['transactionNote'];
-$db_transactionId = $rowReports['transactionId'];
+$db_status = $rowReports['status'] ?? null;
+$db_transactionNote = $rowReports['transactionNote'] ?? null;
+$db_transactionId = $rowReports['transactionId'] ?? null;
 
 // Check if payment is success and merchant transaction ids match
-if ($db_status == 'TXN_SUCCESS' && $cxrmerchantTransactionId == $db_merchantTransactionId) {
+if ($rowReports && $db_status == 'TXN_SUCCESS' && $cxrmerchantTransactionId == $db_merchantTransactionId) {
 
     $mcq = "SELECT id FROM callback_report WHERE order_id = '$order_id'";
     $ccw = mysqli_query($conn, $mcq);

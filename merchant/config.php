@@ -6,8 +6,8 @@ date_default_timezone_set("Asia/Kolkata");
 
 $dbhost1 = "localhost";
 $dbuser1 = "u908417695_A1ejankari";
-$dbpass1 = 'superUser';
-// $dbpass1 = '41rdO$2^Dy';
+// $dbpass1 = 'superUser';
+$dbpass1 = '41rdO$2^Dy';
 
 $dbname1 = "u908417695_A1ejankari";
 

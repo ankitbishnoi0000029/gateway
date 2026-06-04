@@ -364,7 +364,7 @@ if($userdata["aadhar_kyc"] == 1){
                   <input class="form-check-input" id="accept_warn_tc_btn" type="checkbox" name="accept_warn_tc_btn" checked="checked" required="">
                   <label class="form-check-label" for="accept_warn_tc_btn" style="font-size: 12px; user-select: none;">
     I have read and accept to the 
-    <a href="https://pay.a1ejankari.com/terms" target="_blank" style="text-decoration: none; color: blue;">terms and conditions</a>
+    <a href="https://pay.a1ejankari.com/terms" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: blue;">terms and conditions</a>
     of imb Payment Gateway service.
 </label>
 </div>
@@ -372,7 +372,7 @@ if($userdata["aadhar_kyc"] == 1){
         <input class="form-check-input" id="accept_privacy_policy_btn" type="checkbox" name="accept_privacy_policy_btn" checked="checked" required="">
         <label class="form-check-label" for="accept_privacy_policy_btn" style="font-size: 12px; user-select: none;">
           Do you agree with our 
-          <a href="https://pay.a1ejankari.com/policy" target="_blank" style="text-decoration: none; color: blue;">Privacy Policy</a>.
+          <a href="https://pay.a1ejankari.com/policy" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: blue;">Privacy Policy</a>.
         </label>
 
                 </div>

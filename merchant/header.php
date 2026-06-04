@@ -68,7 +68,7 @@ $interval = $today->diff($futureDate);
 
 // Get the number of days as an integer
 $daysDifference = $interval->days;
-// $plan_expirydays = "Plan Expired In : $daysDifference Days";
+$plan_expirydays = "Plan Expired In : $daysDifference Days";
 }else{
 $plan_expirydays = "Your plan is expired";
 }

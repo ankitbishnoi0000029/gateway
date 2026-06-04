@@ -414,42 +414,42 @@ input:checked + .slider:before {
     
     <div class="col-md-6 mb-3">
         <label>Auth Sign PAN </label>
-        <a href="https://pay.a1ejankari.com/imbpg/userkyc_doc/<?= $day['pancard_img'] ?>" target="_blank">View Auth Sign PAN Image</a>
+        <a href="https://pay.a1ejankari.com/imbpg/userkyc_doc/<?= $day['pancard_img'] ?>" target="_blank" rel="noopener noreferrer">View Auth Sign PAN Image</a>
     </div>
     
     <div class="col-md-6 mb-3">
         <label>STIN/GST Declaration</label>
-        <a href="https://pay.a1ejankari.com/imbpg/userkyc_doc/<?= $day['gst_img'] ?>" target="_blank">View GSTIN Image</a>
+        <a href="https://pay.a1ejankari.com/imbpg/userkyc_doc/<?= $day['gst_img'] ?>" target="_blank" rel="noopener noreferrer">View GSTIN Image</a>
     </div>
    
     <div class="col-md-6 mb-3">
         <label>Co. Reg. Address</label>
-       <a href="https://pay.a1ejankari.com/imbpg/userkyc_doc/<?= $day['regaddress_img'] ?>" target="_blank">View Reg.Address Image</a>
+       <a href="https://pay.a1ejankari.com/imbpg/userkyc_doc/<?= $day['regaddress_img'] ?>" target="_blank" rel="noopener noreferrer">View Reg.Address Image</a>
     </div>
     
     <div class="col-md-6 mb-3">
         <label>Aadhar Card (Front and Back)</label>
-        <a href="https://pay.a1ejankari.com/imbpg/userkyc_doc/<?= $day['aadharcard_img'] ?>" target="_blank">View Aadhaar Card Image</a>
+        <a href="https://pay.a1ejankari.com/imbpg/userkyc_doc/<?= $day['aadharcard_img'] ?>" target="_blank" rel="noopener noreferrer">View Aadhaar Card Image</a>
     </div>
     
     <div class="col-md-6 mb-3">
         <label>Cancelled Bank Cheque</label>
-       <a href="https://pay.a1ejankari.com/imbpg/userkyc_doc/<?= $day['cancelled_bankcheque'] ?>" target="_blank">View Cancelled Bank Cheque Image</a>
+       <a href="https://pay.a1ejankari.com/imbpg/userkyc_doc/<?= $day['cancelled_bankcheque'] ?>" target="_blank" rel="noopener noreferrer">View Cancelled Bank Cheque Image</a>
     </div>
     
     <div class="col-md-6 mb-3">
         <label>Bank Statement</label>
-       <a href="https://pay.a1ejankari.com/imbpg/userkyc_doc/<?= $day['bankstatement_img'] ?>" target="_blank">View Bank Statement Image</a>
+       <a href="https://pay.a1ejankari.com/imbpg/userkyc_doc/<?= $day['bankstatement_img'] ?>" target="_blank" rel="noopener noreferrer">View Bank Statement Image</a>
     </div>
     
     <div class="col-md-6 mb-3">
         <label>Udyam Aadhaar</label>
-        <a href="https://pay.a1ejankari.com/imbpg/userkyc_doc/<?= $day['udhyamadhaar_img'] ?>" target="_blank">View Udyam Aadhaar Image</a>
+        <a href="https://pay.a1ejankari.com/imbpg/userkyc_doc/<?= $day['udhyamadhaar_img'] ?>" target="_blank" rel="noopener noreferrer">View Udyam Aadhaar Image</a>
     </div>
     
     <div class="col-md-6 mb-3">
         <label>Others Document</label>
-        <a href="https://pay.a1ejankari.com/imbpg/userkyc_doc/<?= $day['other_img'] ?>" target="_blank">View Others Doc Image</a>
+        <a href="https://pay.a1ejankari.com/imbpg/userkyc_doc/<?= $day['other_img'] ?>" target="_blank" rel="noopener noreferrer">View Others Doc Image</a>
     </div>
    
 </form>

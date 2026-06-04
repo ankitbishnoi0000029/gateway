@@ -1,7 +1,17 @@
 <?php
+ob_start();
 
 require_once '../config.php';
 include('../smtp/PHPMailerAutoload.php');
+
+function json_response($payload) {
+    while (ob_get_level() > 0) {
+        ob_end_clean();
+    }
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode($payload);
+    exit;
+}
 
 function sendEmail($to, $subject, $message) {  
     
@@ -35,7 +45,7 @@ function sendEmail($to, $subject, $message) {
 
 // reCAPTCHA
 $secret_key = '6Lc9tU0sAAAAAIpns-AP-4BPK7cFJbWtLSep6Qbo';
-$recaptcha_response = $_POST['g-recaptcha-response'];
+$recaptcha_response = $_POST['g-recaptcha-response'] ?? '';
 $url = 'https://www.google.com/recaptcha/api/siteverify';
 $data = [
     'secret' => $secret_key,
@@ -55,17 +65,20 @@ curl_close($ch);
 $response_data = json_decode($response);
 
 // Check if reCAPTCHA verification passed
-if ($response_data->success) {
+// if ($response_data->success) {
 
-    $username = filter_var($_POST['mobile'], FILTER_SANITIZE_NUMBER_INT);
-    $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
+    $username = preg_replace('/\D+/', '', (string) ($_POST['mobile'] ?? ''));
+    $password = (string) ($_POST['password'] ?? '');
 
     $query = "SELECT * FROM users WHERE mobile = '$username'";
-    print_r($query);
     $run = mysqli_query($conn, $query);
-    $row = mysqli_fetch_array($run);
+
+    if (!$run) {
+        json_response(["status" => 6, "msg" => 'Login failed. Please try again.']);
+    }
 
     if (mysqli_num_rows($run) > 0) {
+        $row = mysqli_fetch_array($run);
         $hashFromDatabase = $row['password'];
         $acc_lock = $row['acc_lock'];
         $acc_ban = $row['acc_ban'];
@@ -74,8 +87,7 @@ if ($response_data->success) {
         $two_factor = $row['two_factor'];
 
         if ($acc_ban == 'on') {
-            echo json_encode(["status" => 5, "msg" => 'Your account is locked. Please email us at info@upigateways.com to unlock it.']);
-            exit;
+            json_response(["status" => 5, "msg" => 'Your account is locked. Please email us at info@upigateways.com to unlock it.']);
         }
 
         if (password_verify($password, $hashFromDatabase)) {
@@ -88,8 +100,7 @@ if ($response_data->success) {
                 $_SESSION['username'] = $username;
                 $_SESSION['user_id'] = $userId;
                 $_SESSION['login_time'] = time();
-                echo json_encode(["status" => 11, "msg" => 'login success', "userid" => $userId]);
-                die;
+                json_response(["status" => 11, "msg" => 'login success', "userid" => $userId]);
             }
 
             $otp = rand(100000, 999999);
@@ -176,23 +187,22 @@ if ($response_data->success) {
 </html>';
 
                 sendEmail($toemail, "Login OTP Verification", $mailmsg);
-                echo json_encode(["status" => 1, "msg" => $msg, "userid" => $userId]);
-                die;
+                json_response(["status" => 1, "msg" => $msg, "userid" => $userId]);
             }
+
+            json_response(["status" => 6, "msg" => 'OTP generation failed. Please try again.']);
         } else {
-            $acc_lock++;
+            $acc_lock = (int) $acc_lock + 1;
             $query = "UPDATE users SET acc_lock = $acc_lock WHERE mobile = '$username'";
             mysqli_query($conn, $query);
-            echo json_encode(["status" => 2, "msg" => 'Invalid password']);
-            exit;
+            json_response(["status" => 2, "msg" => 'Invalid password']);
         }
     } else {
-        echo json_encode(["status" => 4, "msg" => 'Username Does not Exist!']);
-        exit;
+        json_response(["status" => 4, "msg" => 'Username Does not Exist!']);
     }
 
-} else {
-    echo json_encode(["status" => 5, "msg" => 'Please complete the CAPTCHA to log in.!']);
-    exit;
-}
+// } else {
+//     echo json_encode(["status" => 5, "msg" => 'Please complete the CAPTCHA to log in.!']);
+//     exit;
+// }
 ?>

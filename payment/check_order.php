@@ -4,13 +4,6 @@ include "../pages/dbInfo.php";
 
 header('Content-Type: application/json');
 
-$servername = 'localhost';
-$username = 'u908417695_A1ejankari';
-$password = '41rdO$2^Dy';
-$dbname = 'u908417695_A1ejankari';
-
-$conn = new mysqli("localhost", $username, $password, $dbname);
-
 if ($conn->connect_error) {
     echo json_encode([
         "status" => "ERROR",

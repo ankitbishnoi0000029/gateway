@@ -8,6 +8,10 @@ function popup(status , title , msg){
     });
 }
 
+function redirectAfterLogin(url) {
+    window.location.href = url;
+}
+
 
     const inputs = document.querySelectorAll('.otp-input');
 
@@ -76,7 +80,7 @@ $("#login_form").submit(function(e){
     function(data, status){
          $("#loading_ajax").hide();   
         // console.log("Data: " + data + "\nStatus: " + status);
-        let rslt = JSON.parse(data);
+        let rslt = data;
         if(rslt.status == 1){
             
             $('#useridmodal').val(rslt.userid);
@@ -84,25 +88,9 @@ $("#login_form").submit(function(e){
             $('#otpformbox').show();
             startTimer(30, timerElement);
         }else if(rslt.status == 11){
-             Swal.fire({
-                icon: "success",
-                title: "Hurray!",
-                button: "Okay",
-                text: 'Welcome. You are logged in.',
-                }) .then(function(){ 
-                location.replace("dashboard?login=access&user=mrcnt");
-                }
-                );
+             redirectAfterLogin("dashboard?login=access&user=mrcnt");
         }else if(rslt.status == 10){
-             Swal.fire({
-                icon: "success",
-                title: "Hurray!",
-                button: "Okay",
-                text: 'Welcome. You are logged in.',
-                }) .then(function(){ 
-                location.replace("dashboard?login=access&user=mrcnt");
-                }
-                );
+             redirectAfterLogin("dashboard?login=access&user=mrcnt");
         }else{
            grecaptcha.reset();
 
@@ -113,8 +101,13 @@ $("#login_form").submit(function(e){
                 text: rslt.msg,
                 });
         }
-       
-                
+    }, "json").fail(function(){
+        $("#loading_ajax").hide();
+        Swal.fire({
+            icon: "error",
+            title: "Oops!",
+            text: "Login request failed. Please try again."
+        });
     });
     
     
@@ -198,4 +191,3 @@ function verify(msg){
     $("#otp_area").show();
     $("#otp_msg").text(msg);
 }
-

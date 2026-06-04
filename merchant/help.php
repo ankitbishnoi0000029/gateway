@@ -21,10 +21,10 @@
                 <div class="card shadow p-4 border-0 h-100">
                     <div class="card-body">
                         <i class="bi bi-whatsapp" style="font-size: 3rem; color: #25D366;"></i>
-                        <p class="mb-2"><strong>Number:</strong> <br><a href="https://wa.me/916200218694" target="_blank">+91 6200218694</a></p>
+                        <p class="mb-2"><strong>Number:</strong> <br><a href="https://wa.me/916200218694" target="_blank" rel="noopener noreferrer">+91 6200218694</a></p>
                         <h5 class="mt-3">WhatsApp Support</h5>
                         <p>Chat with our support team for quick help.</p>
-                        <a href="https://wa.me/916200218694" target="_blank" class="btn btn-success btn-sm">Start Chat</a>
+                        <a href="https://wa.me/916200218694" target="_blank" rel="noopener noreferrer" class="btn btn-success btn-sm">Start Chat</a>
                     </div>
                 </div>
             </div>

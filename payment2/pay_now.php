@@ -322,6 +322,17 @@ function upiCountdown(elm, minute, second) {
 upiCountdown("timeout", 10, 0);
 
 // Download QR
+function safeOpenExternal(url) {
+    if (!url) return false;
+    const opened = window.open(url, '_blank', 'noopener,noreferrer');
+    if (opened) {
+        opened.opener = null;
+        return true;
+    }
+    window.location.href = url;
+    return false;
+}
+
 function downloadQR() {
     const img = document.getElementById('qr-img');
     if (!img) return Swal.fire('Error','QR not available','error');
@@ -348,7 +359,7 @@ function downloadQR() {
         Swal.fire('Success','QR downloaded','success');
     }).catch(err => {
         console.error('downloadQR error', err);
-        window.open(src, '_blank');
+        safeOpenExternal(src);
         Swal.fire('Info','Unable to download, opened in new tab. Save image manually.','info');
     });
 }
@@ -382,14 +393,14 @@ async function shareQRCode() {
         } else if (navigator.share) {
             await navigator.share({ title: 'UPI Payment', text: 'Scan this UPI QR or use UPI link: ' + SERVER.upi_link });
         } else {
-            window.open(img.src, '_blank');
+            safeOpenExternal(img.src);
             Swal.fire('Info', 'Sharing not supported. QR opened in new tab - save or share manually.', 'info');
         }
     } catch (err) {
         console.error('shareQRCode error', err);
         Swal.fire('Error', 'Could not share QR automatically. Opened image in new tab.', 'error');
         const img = document.getElementById('qr-img');
-        if (img && img.src) window.open(img.src, '_blank');
+        if (img && img.src) safeOpenExternal(img.src);
     }
 }
 

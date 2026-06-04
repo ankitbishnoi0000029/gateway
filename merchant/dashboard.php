@@ -11,13 +11,19 @@ if ($result === false) {
 } else {
     // Fetch the result
     $row = $result->fetch_assoc();
-    $rowCount = $row['count'];
+    $rowCount = (int) ($row['count'] ?? 0);
 }
 
+$todaySuccessAmount = (float) ($todaysuccesspayment['amt'] ?? 0);
+$todaySuccessCount = (int) ($todayallpayment['amt'] ?? 0);
+$todayPendingAmount = (float) ($todaypendingpayment['amt'] ?? 0);
+$todaySettlementAmount = (float) ($todaysettlement['amt'] ?? 0);
+$todayFailedAmount = (float) ($todayfail['amt'] ?? 0);
+
 // Check account status
-$expiryDate = $userdata['expiry'];
+$expiryDate = $userdata['expiry'] ?? '';
 $today = date('Y-m-d');
-$status = (strtotime($expiryDate) >= strtotime($today)) ? "Active" : "Expired";
+$status = (!empty($expiryDate) && strtotime($expiryDate) >= strtotime($today)) ? "Active" : "Expired";
 ?>
 
 <!DOCTYPE html>
@@ -215,7 +221,7 @@ $status = (strtotime($expiryDate) >= strtotime($today)) ? "Active" : "Expired";
                         </div>
                         <div>
                             <h6 class="card-subtitle mb-2">Today's Transactions</h6>
-                            <h3 class="mb-0">₹<?= number_format($todaysuccesspayment["amt"], 2) ?></h3>
+                            <h3 class="mb-0">₹<?= number_format($todaySuccessAmount, 2) ?></h3>
                         </div>
                     </div>
                 </div>
@@ -231,7 +237,7 @@ $status = (strtotime($expiryDate) >= strtotime($today)) ? "Active" : "Expired";
                         </div>
                         <div>
                             <h6 class="card-subtitle mb-2">Today Success Payments</h6>
-                            <h3 class="mb-0">₹<?= number_format($todayallpayment["amt"], 2) ?></h3>
+                            <h3 class="mb-0">₹<?= number_format($todaySuccessCount, 2) ?></h3>
                         </div>
                     </div>
                 </div>
@@ -247,7 +253,7 @@ $status = (strtotime($expiryDate) >= strtotime($today)) ? "Active" : "Expired";
                         </div>
                         <div>
                             <h6 class="card-subtitle mb-2">Today Pending Payment</h6>
-                            <h3 class="mb-0">₹<?= number_format($todaypendingpayment["amt"], 2) ?></h3>
+                            <h3 class="mb-0">₹<?= number_format($todayPendingAmount, 2) ?></h3>
                         </div>
                     </div>
                 </div>
@@ -263,7 +269,7 @@ $status = (strtotime($expiryDate) >= strtotime($today)) ? "Active" : "Expired";
                         </div>
                         <div>
                             <h6 class="card-subtitle mb-2">Today's Settlement</h6>
-                            <h3 class="mb-0">₹<?= number_format($todaysuccesspayment["amt"], 2) ?></h3>
+                            <h3 class="mb-0">₹<?= number_format($todaySettlementAmount, 2) ?></h3>
                         </div>
                     </div>
                 </div>
@@ -330,7 +336,7 @@ $status = (strtotime($expiryDate) >= strtotime($today)) ? "Active" : "Expired";
                         </div>
                         <div>
                             <h6 class="card-subtitle mb-2">Today Failed Payment</h6>
-                            <h3 class="mb-0">₹<?= number_format($todayfail["amt"], 2) ?></h3>
+                            <h3 class="mb-0">₹<?= number_format($todayFailedAmount, 2) ?></h3>
                         </div>
                     </div>
                 </div>

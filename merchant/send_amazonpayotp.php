@@ -181,7 +181,7 @@ exit;
                                                         <div class="col-md-4 mb-2">
                                                         <label>&nbsp;</label>
                                                         <a href="https://www.amazon.in/amazonpay/home?ref_=nav_cs_apay" 
-                                                           target="_blank" 
+                                                           target="_blank" rel="noopener noreferrer" 
                                                            class="btn btn-block custom-btn">
                                                            <i class="fa fa-link"></i> Visit Amazonpay
                                                         </a>

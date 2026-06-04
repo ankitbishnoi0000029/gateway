@@ -5,13 +5,6 @@ include "../pages/dbInfo.php";
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-$dbhost1 = "localhost";
-$dbuser1 = "u908417695_A1ejankari";
-$dbpass1 = '41rdO$2^Dy';
-$dbname1 = "u908417695_A1ejankari";
-
-$conn = new mysqli($dbhost1, $dbuser1, $dbpass1, $dbname1);
-
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }

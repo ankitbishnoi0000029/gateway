@@ -154,7 +154,7 @@ echo "<td>" . htmlspecialchars($row['expiry'], ENT_QUOTES, 'UTF-8') . "</td>";
      
      <td>        <div class="row">
     <div class="col-12">
-        <form action="backend/user_settings.php" target="_blank" method="post">
+        <form action="backend/user_settings.php" target="_blank" rel="noopener noreferrer" method="post">
             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
             <input type="hidden" name="mobileno" value="<?php echo $row['mobile']; ?>">
             <button class="btn btn-primary" name="loginuser">Login</button>

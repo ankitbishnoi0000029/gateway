@@ -586,7 +586,7 @@
                             </div>
                             <p>Meet our team of experts dedicated to providing top-notch UPI gateway integration
                                 services. And we are here to make your online payments more efficient and secure.</p>
-                            <a href="https://wa.me/919876543210" target="_blank" class="btn"
+                            <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" class="btn"
                                 style="background-color:forestgreen;">Connect on WhatsApp <span></span></a>
                         </div>
                     </div>

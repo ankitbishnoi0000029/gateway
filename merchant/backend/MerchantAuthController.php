@@ -106,7 +106,7 @@ return true;
 
 }
 
-$merchantVAuth = new merchantAuthClass("localhost", "u908417695_A1ejankari", "A1ejankari@123", "u908417695_A1ejankari");
+$merchantVAuth = new merchantAuthClass($dbhost1, $dbuser1, $dbpass1, $dbname1);
 
 
 
@@ -545,4 +545,3 @@ if(isset($_POST["type"]) && $_POST["type"] == 'seennotif'){
 
 
 ?>
-

@@ -1,41 +1,25 @@
-// <?php
-// error_reporting(E_ALL);
-// ini_set("display_errors", true);
-
-// date_default_timezone_set("Asia/Kolkata");
-
-// $dbhost = "localhost";
-// $dbuser = "u908417695_A1ejankari";
-// $dbpass = '41rdO$2^Dy';
-// $dbname = "u908417695_A1ejankari";
-
-// $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
-// // print_r($conn);
-// if (!$conn) {
-//     die(
-//         "Database Connection failed<br>" .
-//         "Error No: " . mysqli_connect_errno() . "<br>" .
-//         "Error: " . mysqli_connect_error()
-//     );
-// }
-
-// mysqli_set_charset($conn, "utf8mb4");
-
-// $server = $_SERVER["SERVER_NAME"] ?? "";
-// ?>
 <?php
 error_reporting(E_ALL);
 ini_set("display_errors", true);
 
 date_default_timezone_set("Asia/Kolkata");
 
-// mysqli_report(MYSQLI_REPORT_OFF);
-
-// Normal variables
 $dbhost1 = "localhost";
 $dbuser1 = "u908417695_A1ejankari";
 $dbpass1 = '41rdO$2^Dy';
 $dbname1 = "u908417695_A1ejankari";
+
+$dbhost = $dbhost1;
+$dbuser = $dbuser1;
+$dbpass = $dbpass1;
+$dbname = $dbname1;
+
+if (!defined('DB_HOST')) {
+    define('DB_HOST', $dbhost1);
+    define('DB_USERNAME', $dbuser1);
+    define('DB_PASSWORD', $dbpass1);
+    define('DB_NAME', $dbname1);
+}
 
 if (!function_exists("connect_database")) {
     function connect_database() {
@@ -68,4 +52,3 @@ if (!function_exists("connect_database")) {
 $conn = connect_database();
 
 $server = $_SERVER["SERVER_NAME"] ?? "";
-?>

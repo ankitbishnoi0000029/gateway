@@ -151,9 +151,11 @@ input:focus {
 
                 <?php if ($paymentUrl) { ?>
                     <script>
-                        // NEW TAB OPEN
-                        window.open("<?= $paymentUrl ?>", "_blank");
+                        window.location.href = <?= json_encode($paymentUrl) ?>;
                     </script>
+                    <noscript>
+                        <a class="btn-pay" href="<?= htmlspecialchars($paymentUrl, ENT_QUOTES) ?>" rel="noopener noreferrer">Continue to Payment</a>
+                    </noscript>
                 <?php } ?>
 
             </div>

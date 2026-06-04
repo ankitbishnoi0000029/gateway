@@ -4,11 +4,11 @@ header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
 error_reporting(0);
 date_default_timezone_set("Asia/Kolkata");   //India time (GMT+5:30)
+require_once __DIR__ . '/../config.php';
 
 function db(){
-global $dbhost,$dbname,$dbuser,$dbpass;
 try {   
-$conn = new PDO("mysql:host=localhost;dbname=u908417695_A1ejankari", "u908417695_A1ejankari", "A1ejankari@123");
+$conn = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USERNAME, DB_PASSWORD);
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $conn->exec('SET NAMES "utf8"');
 return $conn;

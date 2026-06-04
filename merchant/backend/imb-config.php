@@ -1,11 +1,10 @@
 <?php
-// imb-config.php
+require_once __DIR__ . '/../config.php';
 
-// Database credentials
-$db_host = "localhost";
-$db_user = "u908417695_A1ejankari";
-$db_password = "A1ejankari@123";
-$db_name = "u908417695_A1ejankari";
+$db_host = DB_HOST;
+$db_user = DB_USERNAME;
+$db_password = DB_PASSWORD;
+$db_name = DB_NAME;
 
 // API credentials
 $client_id = "enter_now_your_details";

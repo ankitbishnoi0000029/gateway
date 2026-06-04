@@ -430,6 +430,17 @@ upiCountdown("timeout", 10, 0);
 // --- New Functions for QR/UPI actions (for enhanced design buttons) ---
 
 // Download QR
+function safeOpenExternal(url) {
+    if (!url) return false;
+    const opened = window.open(url, '_blank', 'noopener,noreferrer');
+    if (opened) {
+        opened.opener = null;
+        return true;
+    }
+    window.location.href = url;
+    return false;
+}
+
 function downloadQR() {
     const img = document.getElementById('qr-img');
     if (!img) return Swal.fire('Error','QR not available','error');
@@ -443,7 +454,7 @@ function downloadQR() {
         Swal.fire('Success','QR downloaded','success');
     }).catch(err => {
         console.error('downloadQR error', err);
-        window.open(src, '_blank');
+        safeOpenExternal(src);
         Swal.fire('Info','Unable to download, opened in new tab. Save image manually.','info');
     });
 }

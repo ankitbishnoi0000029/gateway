@@ -25,10 +25,10 @@ if(isset($_POST['id'])){
             $_SESSION['user_id']=$fetchuser["id"];
             $_SESSION['login_time'] = time();
             
-            if($row['pg_mode'] == 2){
+            if($fetchuser['pg_mode'] == 2){
                 
     	       echo '2';
-            }else if($row['pg_mode'] == 3){
+            }else if($fetchuser['pg_mode'] == 3){
                 
     	       echo '3';
             }else{

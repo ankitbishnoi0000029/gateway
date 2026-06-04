@@ -101,8 +101,8 @@ class CrudOperation {
     }
 }
 
+require_once __DIR__ . '/../config.php';
+
 // Example usage:
-$crud = new CrudOperation("localhost", "u908417695_A1ejankari", "A1ejankari@123", "u908417695_A1ejankari");
-
-
+$crud = new CrudOperation($dbhost1, $dbuser1, $dbpass1, $dbname1);
 ?>

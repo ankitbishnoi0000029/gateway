@@ -146,15 +146,15 @@ if ($responseArray !== null) {
         floatval($responseArray['TXNAMOUNT']) == floatval($db_amount)
     ) {
 
-        $transactionId = $responseArray['TXNID'];
+        $transactionId = $responseArray['TXNID'] ?? null;
         $paymentState = $responseArray['STATUS'];
         $amount = $responseArray['TXNAMOUNT'];
         $vpa = "Not Found";
         $user_name = "NULL";
-        $paymentApp = $responseArray['GATEWAYNAME'];
-        $transactionNote = $responseArray['MERC_UNQ_REF'];
+        $paymentApp = $responseArray['GATEWAYNAME'] ?? "Not Found";
+        $transactionNote = $responseArray['MERC_UNQ_REF'] ?? "Not Found";
         $cxrmerchantTransactionId = $responseArray['ORDERID'];
-        $UTR = $responseArray['BANKTXNID'];
+        $UTR = $responseArray['BANKTXNID'] ?? "Not Found";
 
         $sqlInsertReport = "INSERT INTO reports (transactionId, status, order_id, vpa, user_name, paymentApp, amount, user_token, transactionNote, merchantTransactionId, user_id, user_mode) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmtInsertReport = $conn->prepare($sqlInsertReport);
